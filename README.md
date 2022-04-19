@@ -1,2 +1,2 @@
-# BlockChain
-System Cat Chain.
+# System Cat Chain
+A chain.
