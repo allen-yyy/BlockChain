@@ -9,7 +9,7 @@
 #define SHA256_E1(x) (SHA256_ROTL(x,26)^SHA256_ROTL(x,21)^SHA256_ROTL(x,7))
 #define SHA256_O0(x) (SHA256_ROTL(x,25)^SHA256_ROTL(x,14)^SHA256_SR(x,3))
 #define SHA256_O1(x) (SHA256_ROTL(x,15)^SHA256_ROTL(x,13)^SHA256_SR(x,10))
-extern char* StrSHA256(const char* str, long long length, char* sha256){
+char *sha256(char* str, long long length){
     char *pp, *ppend;
     long l, i, W[64], T1, T2, A, B, C, D, E, F, G, H, H0, H1, H2, H3, H4, H5, H6, H7;
     H0 = 0x6a09e667, H1 = 0xbb67ae85, H2 = 0x3c6ef372, H3 = 0xa54ff53a;
@@ -42,6 +42,8 @@ extern char* StrSHA256(const char* str, long long length, char* sha256){
         H0 += A, H1 += B, H2 += C, H3 += D, H4 += E, H5 += F, H6 += G, H7 += H;
     }
     free(pp - l);
-    sprintf(sha256, "%08X%08X%08X%08X%08X%08X%08X%08X", H0, H1, H2, H3, H4, H5, H6, H7);
-    return sha256;
+    char ssha256[30]; 
+    sprintf(ssha256, "%08X%08X%08X%08X%08X%08X%08X%08X", H0, H1, H2, H3, H4, H5, H6, H7);
+    //long n=H0*1e+8*7+H1*1e+8*6+H2*1e+8*5+H3*1e+8*4+H4*1e+8*3+H5*1e+8*2+H6*1e+8+H7;
+	return ssha256;
 }
